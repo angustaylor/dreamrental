@@ -18,7 +18,7 @@ class HomesController < ApplicationController
 
   def create
     @home = Home.new(home_params)
-
+    @home.user = current_user
     if @home.save
       redirect_to @home, notice: 'Home was successfully created.'
     else
@@ -47,6 +47,6 @@ private
 
   # Only allow a list of trusted parameters through.
   def home_params
-    params.require(:home).permit(:address, :region, :country, :postcode, :bedrooms, :bathrooms, :swimming_pool, :description, :user_id, :type)
+    params.require(:home).permit(:address, :region, :country, :postcode, :bedrooms, :bathrooms, :swimming_pool, :description, :user_id, :type, photos: [])
   end
 end
