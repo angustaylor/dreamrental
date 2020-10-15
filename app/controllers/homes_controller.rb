@@ -10,6 +10,7 @@ class HomesController < ApplicationController
 
   def new
     @home = Home.new
+    @home.user = current_user
   end
 
   def edit
