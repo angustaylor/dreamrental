@@ -1,8 +1,9 @@
 class HomesController < ApplicationController
   before_action :set_home, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @homes = Home.all
+    @homes = policy_scope(Home).order(created_at: :desc)
   end
 
   def show
@@ -11,6 +12,7 @@ class HomesController < ApplicationController
   def new
     @home = Home.new
     @home.user = current_user
+    authorize @home
   end
 
   def edit
@@ -19,6 +21,7 @@ class HomesController < ApplicationController
   def create
     @home = Home.new(home_params)
     @home.user = current_user
+    authorize @home
     if @home.save
       redirect_to @home, notice: 'Home was successfully created.'
     else
@@ -43,6 +46,7 @@ private
   # Use callbacks to share common setup or constraints between actions.
   def set_home
     @home = Home.find(params[:id])
+    authorize @home
   end
 
   # Only allow a list of trusted parameters through.

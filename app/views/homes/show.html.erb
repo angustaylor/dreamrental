@@ -1,60 +1,55 @@
 <p id="notice"><%= notice %></p>
 
-<div>
- <% @home.photos.each do |photo| %>
-  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-  <% end %>
+<div class="container">
+
+  <div class ="row d-flex justify-content-between align-items-baseline">
+    <h1>Home Details</h1>
+    <p>
+      <% if @home.user == current_user || current_user.present? && current_user.admin? %>
+        <%= link_to 'Edit', edit_home_path() %>
+      <% end %>
+      <% if @home.user == current_user || current_user.present? && current_user.admin? %>
+        <%= link_to 'Destroy', @home, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+      <%= link_to 'Back', homes_path %>
+    </p>
+  </div>
+
+  <div class="row">
+    <div class="col-8">
+      <div class="m-1">
+        <% @home.photos.each do |photo| %>
+          <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+        <% end %>
+     </div>
+      <p>Hosted by <%= @home.user_id %></p>
+      <p><%= @home.bedrooms %> bedrooms,<%= @home.bathrooms %> bathrooms</p>
+      <hr>
+      <div class="p-3">
+        <% if @home.swimming_pool = true %>
+          <p>swimming pool</p>
+        <% end %>
+        <% if @home.type.nil? == true %>
+          <%= @home.type %>
+        <% end %>
+      </div>
+      <hr>
+      <p>
+        <strong>Description:</strong>
+        <%= @home.description %>
+      </p>
+      <hr>
+      <p>
+        <%= @home.address %>, <%= @home.region %>, <%= @home.country %>
+      </p>
+   </div>
+
+    <div class="col-4">
+      <div class="container d-flex border">
+        <p>Add dates and prices</p>
+      </div>
+    </div>
+  </div>
+
+
 </div>
-
-<p>
-  <strong>Address:</strong>
-  <%= @home.address %>
-</p>
-
-<p>
-  <strong>Region:</strong>
-  <%= @home.region %>
-</p>
-
-<p>
-  <strong>Country:</strong>
-  <%= @home.country %>
-</p>
-
-<p>
-  <strong>Postcode:</strong>
-  <%= @home.postcode %>
-</p>
-
-<p>
-  <strong>Bedrooms:</strong>
-  <%= @home.bedrooms %>
-</p>
-
-<p>
-  <strong>Bathrooms:</strong>
-  <%= @home.bathrooms %>
-</p>
-
-<p>
-  <strong>Swimming pool:</strong>
-  <%= @home.swimming_pool %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @home.description %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @home.user_id %>
-</p>
-
-<p>
-  <strong>Type:</strong>
-  <%= @home.type %>
-</p>
-
-<%= link_to 'Edit', edit_home_path(@home) %> |
-<%= link_to 'Back', homes_path %>

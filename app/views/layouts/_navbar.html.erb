@@ -17,9 +17,15 @@
       </li>
       <li class="nav-item dropdown">
         <img class="avatar dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://res.cloudinary.com/dwmlgdrg1/image/upload/v1602752883/gw4hyztxpadpoe7g6c38.png" />
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
+        <div class="dropdown-menu dropdown-menu-right" id="settings" aria-labelledby="navbarDropdown">
+          <% if user_signed_in? %>
+            <%= link_to "Edit Profile", edit_user_registration_path %>
+            <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
+            <% if user.admin? %>
+              <%= link_to "Edit Profile", edit_user_registration_path %>
+          <% else %>
+          <%= link_to "Sign In", new_user_session_path %>
+          <% end %>
         </div>
       </li>
     </ul>

@@ -33,8 +33,16 @@
         <td><%= home.user_id %></td>
         <td><%= home.type %></td>
         <td><%= link_to 'Show', home %></td>
-        <td><%= link_to 'Edit', edit_home_path(home) %></td>
-        <td><%= link_to 'Destroy', home, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <% if home.user == current_user || current_user.present? && current_user.admin? %>
+            <%= link_to 'Edit', edit_home_path(home) %>
+          <% end %>
+        </td>
+        <td>
+          <% if home.user == current_user || current_user.present? && current_user.admin? %>
+            <%= link_to 'Destroy', home, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -42,4 +50,6 @@
 
 <br>
 
-<%= link_to 'New Home', new_home_path %>
+<% if policy(Home).create? %>
+  <%= link_to "New home", new_home_path %>
+<% end %>
