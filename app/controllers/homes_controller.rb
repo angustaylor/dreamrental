@@ -4,6 +4,13 @@ class HomesController < ApplicationController
 
   def index
     @homes = policy_scope(Home).order(created_at: :desc)
+
+    @markers = @homes.geocoded.map do |home|
+      {
+        lat: home.latitude,
+        lng: home.longitude
+      }
+    end
   end
 
   def show

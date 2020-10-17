@@ -20,9 +20,8 @@
         <div class="dropdown-menu dropdown-menu-right" id="settings" aria-labelledby="navbarDropdown">
           <% if user_signed_in? %>
             <%= link_to "Edit Profile", edit_user_registration_path %>
+            <br>
             <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
-            <% if user.admin? %>
-              <%= link_to "Edit Profile", edit_user_registration_path %>
           <% else %>
           <%= link_to "Sign In", new_user_session_path %>
           <% end %>

@@ -31,6 +31,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'
+gem 'country_select'
 
 gem 'devise'
 gem 'cloudinary', '~> 1.16.0'

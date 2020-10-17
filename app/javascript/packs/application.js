@@ -26,8 +26,11 @@ import "bootstrap";
 
 // Internal imports, e.g:
 // import { user_status } from '../components/_navbar';
+import { initMapbox } from '../plugins/_init_mapbox';
+
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // user_status();
+  initMapbox();
 });
