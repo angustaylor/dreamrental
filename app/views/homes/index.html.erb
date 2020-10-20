@@ -2,56 +2,35 @@
 
 <h1>Homes</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Address</th>
-      <th>Region</th>
-      <th>Country</th>
-      <th>Postcode</th>
-      <th>Bedrooms</th>
-      <th>Bathrooms</th>
-      <th>Swimming pool</th>
-      <th>Description</th>
-      <th>User</th>
-      <th>Type</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<form novalidate="novalidate" class="simple_form search" action="/" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
+  <div class="search-form-control form-group">
+    <input class="form-control string required" type="text" name="search[query]" id="search_query" />
+    <button name="button" type="submit" class="btn btn-flat">
+      <i class="fas fa-search"></i> Search
+    </button>
+  </div>
+</form>
 
-  <tbody>
+<div class="container">
+  <div class="row">
     <% @homes.each do |home| %>
-      <tr>
-        <td><%= home.address %></td>
-        <td><%= home.region %></td>
-        <td><%= home.country %></td>
-        <td><%= home.postcode %></td>
-        <td><%= home.bedrooms %></td>
-        <td><%= home.bathrooms %></td>
-        <td><%= home.swimming_pool %></td>
-        <td><%= home.description %></td>
-        <td><%= home.user_id %></td>
-        <td><%= home.type %></td>
-        <td><%= link_to 'Show', home %></td>
-        <td>
-          <% if home.user == current_user || current_user.present? && current_user.admin? %>
-            <%= link_to 'Edit', edit_home_path(home) %>
-          <% end %>
-        </td>
-        <td>
-          <% if home.user == current_user || current_user.present? && current_user.admin? %>
-            <%= link_to 'Destroy', home, method: :delete, data: { confirm: 'Are you sure?' } %>
-          <% end %>
-        </td>
-      </tr>
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), home.photo">
+          <div class="card-description">
+            <p><%= home.address %></p>
+            <p><%= home.user_id %></p>
+          </div>
+          <%= link_to 'Show', home %>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+    </div>
+  </div>
 
 <br>
 
 <% if policy(Home).create? %>
-  <%= link_to "New home", new_home_path %>
+  <%= link_to "New home", new_home_path() %>
 <% end %>
 
 <br>

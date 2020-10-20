@@ -51,5 +51,26 @@
     </div>
   </div>
 
+ <div class="form-actions btn btn-primary rounded mb-3">
+    <%= link_to 'Book now', new_home_booking_path(@home, @user) %>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <% @reviews.each do |review| %>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), home.photo">
+            <div class="card-description">
+              <p><%= review.rating %></p>
+              <p><%= review.description %> days</p>
+              <p><%= review.created_at %> days</p>
+              <%= link_to 'Edit', edit_home_review_path(@home) %>
+              <%= link_to 'Destroy', homes_path(review), method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+  </div>
+</div>
 
 </div>

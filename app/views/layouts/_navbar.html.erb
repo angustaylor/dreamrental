@@ -10,14 +10,17 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home</a>
+        <a class="nav-link"><%= link_to "Home", homes_path %></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Messages</a>
       </li>
-      <li class="nav-item dropdown">
+      <li class="nav-item">
+        <a class="nav-link"><%= link_to "Bookings", bookings_path %></a>
+      </li>
+      <li class="nav-item dropdown text-secondary">
         <img class="avatar dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://res.cloudinary.com/dwmlgdrg1/image/upload/v1602752883/gw4hyztxpadpoe7g6c38.png" />
-        <div class="dropdown-menu dropdown-menu-right" id="settings" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu dropdown-menu-right p-2 font-italic text-decoration-none text-secondary" id="settings" aria-labelledby="navbarDropdown p-2">
           <% if user_signed_in? %>
             <%= link_to "Edit Profile", edit_user_registration_path %>
             <br>

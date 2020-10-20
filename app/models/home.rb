@@ -1,5 +1,8 @@
 class Home < ApplicationRecord
   belongs_to :user
+  has_many :bookings, dependent: :destroy
+  has_many :reviews, through: :bookings
+
   validates :address, presence: true
   validates :postcode, presence: true
   validates :country, presence: true

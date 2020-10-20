@@ -14,6 +14,7 @@ class HomesController < ApplicationController
   end
 
   def show
+    @reviews = policy_scope(Review).order(created_at: :desc)
   end
 
   def new
