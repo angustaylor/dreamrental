@@ -3,7 +3,13 @@ class HomesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @homes = policy_scope(Home).order(created_at: :desc)
+    if params[:query].present?
+      @homes = policy_scope(
+        Home.search_by_location(params[:query])
+      ).order(created_at: :desc)
+    else
+      @homes = policy_scope(Home).order(created_at: :desc)
+    end
 
     @markers = @homes.geocoded.map do |home|
       {

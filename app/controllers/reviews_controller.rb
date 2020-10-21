@@ -1,4 +1,7 @@
 class ReviewsController < ApplicationController
+  before_action :set_home, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: [:index, :show]
+
   def index
     @reviews = policy_scope(review).order(created_at: :desc)
   end
@@ -46,6 +49,11 @@ class ReviewsController < ApplicationController
   def set_review
     @review = review.find(params[:id])
     authorize @review
+  end
+
+  def set_home
+   @home = Home.find(params[:id])
+    authorize @home
   end
 
   # Only allow a list of trusted parameters through.

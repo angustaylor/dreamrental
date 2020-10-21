@@ -56,21 +56,18 @@
   </div>
 
 <div class="container">
+  <h1>Reviews</h1>
   <div class="row">
-    <% @reviews.each do |review| %>
-        <div class="col-12 col-md-6 col-lg-3">
-          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), home.photo">
-            <div class="card-description">
-              <p><%= review.rating %></p>
-              <p><%= review.description %> days</p>
-              <p><%= review.created_at %> days</p>
-              <%= link_to 'Edit', edit_home_review_path(@home) %>
-              <%= link_to 'Destroy', homes_path(review), method: :delete, data: { confirm: 'Are you sure?' } %>
-            </div>
-          </div>
+    <div class="col-8 align-text-left">
+      <% @reviews.each do |review| %>
+        <div class="mb-12 p-3 border">
+          <p>Created at: <%= review.created_at %> days</p>
+          <p>Rating: <%= review.rating %></p>
+          <p>Description: <%= review.description %> days</p>
+        <%= link_to 'Edit', edit_home_review_path(@home) %>
+        <%= link_to 'Destroy', homes_path(review), method: :delete, data: { confirm: 'Are you sure?' } %>
         </div>
       <% end %>
+    </div>
   </div>
-</div>
-
 </div>
