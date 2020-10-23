@@ -22,6 +22,6 @@ class ReviewPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.admin? || record.try(:user) == user
+    true
   end
 end

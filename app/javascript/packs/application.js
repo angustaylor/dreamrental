@@ -34,3 +34,5 @@ document.addEventListener('turbolinks:load', () => {
   // user_status();
   initMapbox();
 });
+
+import "controllers"

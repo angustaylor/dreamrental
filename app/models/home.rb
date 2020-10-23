@@ -9,16 +9,19 @@ class Home < ApplicationRecord
   validates :bedrooms, presence: true
   has_many_attached :photos
 
-  geocoded_by :address
-  # def full_address
-  #   "#{:address}, #{:country} #{:postcode}"
-  # end
-  after_validation :geocode, if: :will_save_change_to_address?
-
   include PgSearch::Model
   pg_search_scope :search_by_location,
     against: [:address, :postcode, :country],
     using: {
       tsearch: { prefix: true }
     }
+
+  before_validation :create_full_address
+
+  def create_full_address
+    self.full_address = "#{address} #{city}, #{country}"
+  end
+
+  geocoded_by :full_address
+  after_validation :geocode, if: :will_save_change_to_address?
 end

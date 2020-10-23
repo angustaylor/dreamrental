@@ -47,7 +47,7 @@ class ApplicationPolicy
     end
   end
 
- def rails_admin?(action)
+  def rails_admin?(action)
     case action
     when :dashboard
       @user.admin?

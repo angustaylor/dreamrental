@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_home, only: [:show, :edit, :update, :destroy]
+   before_action :set_review, only: [:show, :edit, :update, :destroy]
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
@@ -41,13 +42,13 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review.destroy
-    redirect_to reviews_path(@home), notice: 'review was successfully destroyed.'
+    redirect_to @home, notice: 'review was successfully destroyed.'
   end
 
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_review
-    @review = review.find(params[:id])
+    @review = Review.find(params[:home_id])
     authorize @review
   end
 
