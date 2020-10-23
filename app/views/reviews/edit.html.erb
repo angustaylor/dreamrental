@@ -1,3 +1,15 @@
 <h1>Edit Review</h1>
 
-<%= render 'form', booking: @home, review: @review %>
+<%= simple_form_for [@home, @review] do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :rating, collection: [1,2,3,4,5] %>
+    <%= f.input :description %>
+  </div>
+
+  <div class="form-actions btn btn-primary rounded mb-3">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -59,12 +59,11 @@
   <h1>Reviews</h1>
   <div class="row">
     <div class="col-8 align-text-left">
-      <% @reviews.each do |review| %>
+      <% @home.reviews.each do |review| %>
         <div class="mb-12 p-3 border">
           <p>Created at: <%= review.created_at %> days</p>
           <p>Rating: <%= review.rating %></p>
           <p>Description: <%= review.description %> days</p>
-        <%= link_to 'Edit', edit_home_review_path(review.id) %>
         <%= link_to 'Destroy', home_review_path(review.id), method: :delete, data: { confirm: 'Are you sure?' } %>
         </div>
       <% end %>

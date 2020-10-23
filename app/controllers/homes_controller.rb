@@ -1,5 +1,5 @@
 class HomesController < ApplicationController
-  before_action :set_home, only: [:show, :edit, :update, :destroy]
+  before_action :set_home, only: [:edit, :update, :destroy]
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
@@ -20,7 +20,8 @@ class HomesController < ApplicationController
   end
 
   def show
-    @reviews = policy_scope(Review).order(created_at: :desc)
+    @home = Home.includes(:reviews).find(params[:id])
+    authorize @home
   end
 
   def new
