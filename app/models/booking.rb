@@ -7,6 +7,6 @@ class Booking < ApplicationRecord
   validates :end_date, presence: true, if: :end_date_valid?
 
   def end_date_valid?
-    end_date > Date.today && end_date > start_date
+    end_date > start_date
   end
 end

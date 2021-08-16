@@ -1,0 +1,22 @@
+.cards {
+    display: inline-grid;
+    flex-grow: 1;
+    grid-gap: 28px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 16px;
+    alignment: center
+  }
+  
+  .card {
+    background-position: center;
+    height: 208px;
+    width: 208px;
+    border-radius: 20px;
+    border-color: grey;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    display: flex;
+    padding: 16px;
+    font-size: 14px;
+    color: grey;
+    font-weight: bolder;
+  }  
