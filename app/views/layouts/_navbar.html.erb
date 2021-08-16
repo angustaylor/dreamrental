@@ -13,8 +13,14 @@
         <a class="nav-link"><%= link_to "Home", homes_path %></a>
       </li>
       <li class="nav-item">
+          <% if policy(Home).create? %>
+        <a class="nav-link"><%= link_to "Add a home", new_home_path() %></a>
+      <% end %>
+      </li>
+     <li class="nav-item">
         <a class="nav-link"><%= link_to "Bookings", bookings_path %></a>
       </li>
+ 
       <li class="nav-item dropdown text-secondary">
         <img class="avatar dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://res.cloudinary.com/dwmlgdrg1/image/upload/v1602752883/gw4hyztxpadpoe7g6c38.png" />
         <div class="dropdown-menu dropdown-menu-right p-2 font-italic text-decoration-none text-secondary" id="settings" aria-labelledby="navbarDropdown p-2">

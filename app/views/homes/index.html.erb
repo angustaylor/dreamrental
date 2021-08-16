@@ -30,11 +30,14 @@
     <div class="cards">
       <% @homes.each do |home| %>
         <div class="col-12 col-md-6 col-lg-3">
-          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), home.photo">
+          <div class="card" style="background-image: cl_image_tag(home.photos.first.key, crop: :fill);">
             <div class="card-description">
-              <h3>Location:</h3>
-              <p><%= home.address %></p>
-              <p><%= home.user_id %></p>
+              <p><%= home.address %>, <%= home.city %></p>
+               <p><%= home.region %>, <%= home.country %></p>
+              <p>           
+                <i class="fas fa-bed"> <%= home.bedrooms %></i> 
+                <i class="fas fa-bath"> <%= home.bathrooms %></i>
+              </p>
             </div>
             <%= link_to 'Show', home %>
           </div>
@@ -43,11 +46,5 @@
       </div>
     </div>
   </div>
-
-  <br>
-
-  <% if policy(Home).create? %>
-    <%= link_to "New home", new_home_path() %>
-  <% end %>
 </div>
 <br>

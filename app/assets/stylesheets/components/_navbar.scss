@@ -1,6 +1,7 @@
 .navbar {
   justify-content: space-between;
   background: $purple;
+  height: 56px;
 }
 
 .navbar-collapse {
@@ -9,7 +10,7 @@
 }
 
 .navbar-brand img {
-  width: 240px;
+  width: 200px;
   margin: 0px;
 }
 
