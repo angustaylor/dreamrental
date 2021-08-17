@@ -21,9 +21,13 @@
                 hint: "we need your current password to confirm your changes",
                 required: true,
                 input_html: { autocomplete: "current-password" } %>
+    <%= f.input :bio, placeholder: current_user.bio,
+                input_html: { autocomplete: "optional bio" }%>
+    <%= f.input :avatar, as: :file,
+                input_html: { multiple: false } %>
   </div>
 
-  <div class="form-actions">
+  <div class="form-actions btn-primary col-1">
     <%= f.button :submit, "Update" %>
   </div>
 <% end %>
