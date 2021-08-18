@@ -1,9 +1,7 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <a class="navbar-brand" href="#">
-    <% if user_signed_in? %>
       <img src="https://res.cloudinary.com/dwmlgdrg1/image/upload/v1629022231/Black_logo_-_no_background_komh7w.png" />
-    <% end %>
-</a>
+  </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -23,7 +21,12 @@
       </li>
  
       <li class="nav-item dropdown text-secondary">
-        <img class="avatar dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://res.cloudinary.com/dwmlgdrg1/image/upload/v1602752883/gw4hyztxpadpoe7g6c38.png" />
+        <% if current_user.present? && current_user.avatar.present? %>
+          <img class="avatar dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+           <%= cl_image_tag current_user.avatar.key, height: 40, width: 50 %>
+        <% else %>
+          <img class="avatar dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://res.cloudinary.com/dwmlgdrg1/image/upload/v1602752883/gw4hyztxpadpoe7g6c38.png" />
+        <% end %>
         <div class="dropdown-menu dropdown-menu-right p-2 font-italic text-decoration-none text-secondary" id="settings" aria-labelledby="navbarDropdown p-2">
           <% if user_signed_in? %>
             <%= link_to "Edit Profile", edit_user_registration_path %>

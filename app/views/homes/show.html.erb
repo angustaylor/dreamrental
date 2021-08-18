@@ -1,7 +1,5 @@
 <p id="notice"><%= notice %></p>
-
 <div class="container">
-
   <div class ="row d-flex justify-content-between align-items-baseline">
     <h1>Home Details</h1>
     <p>
@@ -40,7 +38,7 @@
       </p>
       <hr>
       <p>
-        <%= @home.address %>, <%= @home.region %>, <%= @home.country %>
+        <%= @home.address %>, <%= @home.region %>, <%= @home.country_long %>
       </p>
    </div>
 
@@ -61,10 +59,12 @@
     <div class="col-8 align-text-left">
       <% @home.reviews.each do |review| %>
         <div class="mb-12 p-3 border">
-          <p>Created at: <%= review.created_at %> days</p>
+          <p>Created at: <%= review.created_at %></p>
           <p>Rating: <%= review.rating %></p>
-          <p>Description: <%= review.description %> days</p>
-        <%= link_to 'Destroy', home_review_path(review.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+          <p>Description: <%= review.description %></p>
+        <% if current_user.present? && current_user.admin? %>
+          <%= link_to 'Destroy', home_review_path(review.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
         </div>
       <% end %>
     </div>

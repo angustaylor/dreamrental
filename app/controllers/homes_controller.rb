@@ -36,7 +36,8 @@ class HomesController < ApplicationController
   def create
     @home = Home.new(home_params)
     @home.user = current_user
-    @home.full_address = "#{@home.address} #{@home.city}, #{@home.country}"
+    @home.country_long = country_name(@home.country)
+    @home.full_address = "#{@home.address} #{@home.city}, #{@home.country_long}"
     authorize @home
     if @home.save
       redirect_to @home, notice: 'Home was successfully created.'
@@ -67,6 +68,12 @@ private
 
   # Only allow a list of trusted parameters through.
   def home_params
-    params.require(:home).permit(:address, :city, :region, :country, :postcode, :bedrooms, :bathrooms, :swimming_pool, :description, :user_id, :type, photos: [])
+    params.require(:home).permit(:address, :city, :region, :country, :postcode, :country_long, :bedrooms, :bathrooms, :swimming_pool, :description, :user_id, :type, photos: [])
   end
+
+  def country_name(country)
+    country_name = ISO3166::Country[country]
+    country_name.translations[I18n.locale.to_s] || country_name.name
+  end
+
 end

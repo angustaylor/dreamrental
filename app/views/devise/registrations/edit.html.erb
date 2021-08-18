@@ -23,8 +23,11 @@
                 input_html: { autocomplete: "current-password" } %>
     <%= f.input :bio, placeholder: current_user.bio,
                 input_html: { autocomplete: "optional bio" }%>
-    <%= f.input :avatar, as: :file,
-                input_html: { multiple: false } %>
+    <%= f.file_field :avatar,
+        placeholder: 'Upload picture',
+        id: "change-img-field",
+        direct_upload: true
+        %>
   </div>
 
   <div class="form-actions btn-primary col-1">
