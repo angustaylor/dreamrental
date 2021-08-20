@@ -1,22 +1,20 @@
 .cards {
-    display: inline-grid;
-    flex-grow: 1;
-    grid-gap: 28px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    padding: 16px;
-    alignment: center
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-auto-rows: auto;
+  grid-gap: 1rem;
   }
   
   .card {
-    background-position: center;
-    height: 208px;
-    width: 208px;
-    border-radius: 20px;
+    height: 160px;
+    border-radius: 12px;
+    background-color: rgba(218, 206, 247, 0.2);
     border-color: grey;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
     display: flex;
-    padding: 16px;
+    padding: 12px;
+    place-self: center;
     font-size: 14px;
     color: grey;
     font-weight: bolder;
+    column-count: 2;
   }  

@@ -23,7 +23,11 @@ class Home < ApplicationRecord
   end
 
   def country_name(country)
-    country_name = ISO3166::Country[country]
+    if country = "GB"
+      country_name = "United Kingdom"
+    else
+      country_name = ISO3166::Country[country]
+    end
   end
 
   geocoded_by :full_address

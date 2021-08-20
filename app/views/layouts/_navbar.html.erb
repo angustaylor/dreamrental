@@ -1,23 +1,23 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <a class="navbar-brand" href="#">
-      <img src="https://res.cloudinary.com/dwmlgdrg1/image/upload/v1629022231/Black_logo_-_no_background_komh7w.png" />
+  <a href="#">
+      <img src="https://res.cloudinary.com/dwmlgdrg1/image/upload/v1629022231/Black_logo_-_no_background_komh7w.png", class="navbar-brand" />
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <div class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link"><%= link_to "Home", homes_path %></a>
+        <%= link_to "Home", homes_path, class: "nav-link" %>
       </li>
       </li>
      <li class="nav-item">
-        <a class="nav-link"><%= link_to "Bookings", bookings_path %></a>
+        <%= link_to "Bookings", bookings_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
           <% if policy(Home).create? %>
-        <a class="nav-link"><%= link_to "Add a home", new_home_path() %></a>
+        <%= link_to "Add a home", new_home_path(), class: "nav-link" %>
       <% end %>
  
       <li class="nav-item dropdown text-secondary">
@@ -29,14 +29,13 @@
         <% end %>
         <div class="dropdown-menu dropdown-menu-right p-2 font-italic text-decoration-none text-secondary" id="settings" aria-labelledby="navbarDropdown p-2">
           <% if user_signed_in? %>
-            <%= link_to "Edit Profile", edit_user_registration_path %>
-            <br>
-            <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
+            <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
+            <%= link_to "Sign Out", destroy_user_session_path, :method => :delete, class: "dropdown-item" %>
           <% else %>
-          <%= link_to "Sign In", new_user_session_path %>
+          <%= link_to "Sign In", new_user_session_path, class: "dropdown-item" %>
           <% end %>
         </div>
       </li>
-    </ul>
+    </div>
   </div>
 </div>
