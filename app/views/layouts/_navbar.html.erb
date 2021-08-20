@@ -11,14 +11,14 @@
       <li class="nav-item active">
         <a class="nav-link"><%= link_to "Home", homes_path %></a>
       </li>
-      <li class="nav-item">
-          <% if policy(Home).create? %>
-        <a class="nav-link"><%= link_to "Add a home", new_home_path() %></a>
-      <% end %>
       </li>
      <li class="nav-item">
         <a class="nav-link"><%= link_to "Bookings", bookings_path %></a>
       </li>
+      <li class="nav-item">
+          <% if policy(Home).create? %>
+        <a class="nav-link"><%= link_to "Add a home", new_home_path() %></a>
+      <% end %>
  
       <li class="nav-item dropdown text-secondary">
         <% if current_user.present? && current_user.avatar.present? %>
